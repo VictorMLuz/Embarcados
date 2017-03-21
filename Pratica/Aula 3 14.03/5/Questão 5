@@ -1,0 +1,32 @@
+5. Apresente os comportamentos do código anterior nos seguintes casos:
+	(a) Se o usuário insere mais de um nome.
+		$ ./ola_arg Eu Mesmo
+
+		resposta: Ola Eu //Apenas a primeira palavra foi salva.
+
+	(b) Se o usuário insere mais de um nome entre aspas duplas.
+		$ ./ola_arg "Eu Mesmo"
+
+		resposta: Ola Eu Mesmo //Palavras entre aspas são exibidas.
+
+	(c) Se é usado um pipe.
+		$ echo Eu | ./ola_arg
+
+		resposta: Ola (null) // Entrada não reconhecida.
+
+	(d) Se é usado um pipe com mais de um nome.
+		$ echo Eu Mesmo | ./ola_arg
+
+		resposta: Ola (null) // Entrada não reconhecida.
+ 
+	(e) Se é usado um pipe com mais de um nome entre aspas duplas.
+		$ echo "Eu Mesmo" | ./ola_arg
+
+		resposta: Ola (null) // Entrada não reconhecida.
+
+	(f) Se é usado o redirecionamento de arquivo.
+		$ echo Ola mundo cruel! > ola.txt
+		$ ./ola_arg < ola.txt
+
+		resposta: Ola (null) // Entrada não reconhecida.
+

@@ -1,0 +1,33 @@
+3. Apresente os comportamentos do código anterior nos seguintes casos:
+	(a) Se o usuário insere mais de um nome.
+		$ ./olanome
+		$ Digite o seu nome: Eu Mesmo
+
+		resposta: Ola Eu //Apenas a primeira palavra foi salva.
+
+	(b) Se o usuário insere mais de um nome entre aspas duplas.
+		$ ./olanome
+		$ Digite o seu nome: "Eu Mesmo"
+
+		resposta: Ola "Eu //Primeira palavra é salva, incluindo as primeiras aspas.
+
+	(c) Se é usado um pipe.
+		$ echo Eu | ./olanome
+
+		resposta: Ola Eu
+
+	(d) Se é usado um pipe com mais de um nome.
+		$ echo Eu Mesmo | ./olanome
+
+		resposta: Ola Eu //Apenas a primeira palavra é salva.
+ 
+	(e) Se é usado um pipe com mais de um nome entre aspas duplas.
+		$ echo "Eu Mesmo" | ./olanome
+
+		resposta: Ola Eu //Salva a primeira palara, mas não as aspas [diferente de (b)]
+
+	(f) Se é usado o redirecionamento de arquivo.
+		$ echo Ola mundo cruel! > ola.txt
+		$ ./olanome < ola.txt
+
+		resposta: Ola Ola // Apenas a primeira palavra é salva.
