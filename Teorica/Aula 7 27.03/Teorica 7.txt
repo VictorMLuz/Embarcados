@@ -1,0 +1,53 @@
+Data: 30/03/2017
+
+1. Quantos pipes serão criados após as linhas de código a seguir? Por quê?
+	(a) int pid;
+		int	fd[2];
+		pipe(fd);
+		pid = fork();
+
+		Será criado um pipe, pois o fork é feito depois da chamada pipe.
+
+	(b) int pid;
+		int	fd[2];
+		pid = fork();
+		pipe(fd);
+
+		Serão criados dois pipes, um em cada processo resultante do fork, chamado antes do comando pipe.
+
+2. Apresente mais cinco sinais importantes do ambiente Unix, além do SIGSEGV, SIGUSR1, SIGUSR2, SIGALRM e SIGINT. Quais são suas características e utilidades?
+
+	SIGINT
+	SIGQUIT
+	SIGCLD
+	SIGSEGV
+	SIGKILL
+
+3. Considere o código a seguir:
+
+	 1. #include <signal.h>
+	 2. #include <unistd.h>
+	 3. #include <stdio.h>
+	 4. #include <stdlib.h>
+	 5.
+	 6. void tratamento_alarme(int sig)
+	 7. {
+	 8. 	system("date");
+	 9. 	alarm(1);
+	10. }
+	11. 
+	12. int main()
+	13. {
+	14. 	signal(SIGALRM, tratamento_alarme);
+	15. 	alarm(1);
+	16. 	printf("Aperte CTRL+C para acabar:\n");
+	17. 	while(1);
+	18. 	return 0;
+	19. }
+
+Sabendo que a função alarm() tem como entrada a quantidade de segundos para terminar a contagem, quão precisos são os alarmes criados neste código? De onde vem a imprecisão? Este é um método confiável para desenvolver aplicações em tempo real?
+
+	A função alarm recebe valores int referentes a segundos. Portanto, sua precisão é de 1 segundo. Além da imprecisão do segundo inteiro, a função alarm, à medida que são setados os tempos, pode sofrer atrasos de execução do processo. Principalmente quando o tempo enviado à função é grande.
+	Considerando aplicações em tempo real que processem sinais e dados, ou ainda que necessitem de precisão em milissegundos, o uso de uma função como a alarm() pode comprometer desde a obtenção, a interpretação e o resultado provocado por essas informações, já que essa função não garante sincronismo.
+	
+

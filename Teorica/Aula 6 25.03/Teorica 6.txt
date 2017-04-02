@@ -1,0 +1,42 @@
+Data: 28/03/2017
+
+1. Como se utiliza o comando 'ps' para:
+	(a) Mostrar todos os processos rodando na máquina?
+		ps -ax  ou ps -aux
+
+	(b) Mostrar os processos de um usuário?
+	        ps -f -u usuario
+
+	(c) Ordenar todos os processos de acordo com o uso da CPU?
+		ps aux --sort=-pcpu
+
+	(d) Mostrar a quanto tempo cada processo está rodando?
+		# ps -e -o pid,user,etime
+		[apenas etime define o tempo de execução, os demais parâmetros passados servem para identificar os processos.]
+
+2. De onde vem o nome fork()?
+
+	Do inglês 'bifurcação'. Descreve o que acontece a partir da criação de um novo processo utilizando a função.
+
+3. Quais são as vantagens e desvantagens em utilizar:
+	(a) system()?
+		A função system tem uso simples, e os parâmetros passados para ela são comandos de terminal, já que a serventia dessa função
+é atuar nesse ambiente (criando um subprocesso) a partir do programa. O uso da função system é desaconselhado pois é suscetível a falhas de execução, pois depende muito do sistema em que está rodando (justamente por depender dos comandos de terminal passados).
+
+	(b) fork() e exec()?
+		A função fork cria uma cópia do processo em que foi chamado. Ambos mantém a mesma sequência de execução, o processo 'pai' recebe novo PID (do 'filho') e o 'filho', quando pedido o pid, retorna 0.
+		A função exec desvincula essa cópia de processos, transformando o conteúdo do novo processo em um novo programa. Com a chamada da função exec, os processos param de ter o mesmo program counter (execução sincronizada), e o novo programa criado passa a ser executado do início.
+		A desvantagem desse método de criação de processos são as várias etapas para duplicar e executar os processos.
+
+4. É possível utilizar o exec() sem executar o fork() antes?
+
+Sim, é possivel. A família de funções exec substituem o programa de um processo por outro.Não é necessário criar um novo processo (fork) para
+utilizar exec.
+
+5. Quais são as características básicas das seguintes funções:
+	(a) execp()? - Aceita o nome/procura do programa no mesmo diretório (current path).
+	(b) execv()? - Permite lista de argumentos nula.
+	(c) exece()? - Aceita argumento adicional.
+	(d) execvp()? - Permite lista de argumentos nula e passagem do filename que esteja no current path. 
+	(e) execve()? - Permite passagem do filename como executável binário ou script.
+	(f) execle()? - Permite especificar o ambiente de execução do programa, por meio do argumento envp.
